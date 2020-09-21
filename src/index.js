@@ -5,14 +5,14 @@ import * as serviceWorker from "./serviceWorker";
 // Relative Imports
 import { getRows, getColumns } from "./processapi";
 import { useStyles } from "./style/styles";
+import TeamTablePagination from "./components/TeamTablePagination";
+import RecipeBody from "./components/RecipeBody";
 
 // Absolute Imports
-import Table from "@material-ui/core/Table";
-import TableContainer from "@material-ui/core/TableContainer";
+
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-// import TeamTablePagination from "./components/TeamTablePagination";
 
 const App = () => {
   const [rows, setRows] = useState([]);
@@ -23,8 +23,9 @@ const App = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    console.log();
-  });
+    setRows(getRows());
+    setFilteredRows(getRows());
+  }, []);
 
   /**
    * This function searches the entries with the text typed into the input field
@@ -33,7 +34,7 @@ const App = () => {
   const filterRows = (event) => {
     let searchText = event.target.value.toLowerCase();
     setFilteredRows(
-      rows.filter((row) => row.name.toLowerCase().includes(searchText))
+      rows.filter((row) => row.title.toLowerCase().includes(searchText))
     );
   };
   return (
@@ -48,13 +49,24 @@ const App = () => {
             id="standard-basic"
             label="Search by name"
             fullWidth
-            // onChange={(e) => {
-            //   filterRows(e);
-            // }}
+            onChange={(e) => {
+              filterRows(e);
+            }}
           />
         </Grid>
+      </Grid>
 
-        {/* <Grid item xs={12}>
+      <Grid container justify="center" spacing={3}>
+        {/* <List component="nav">
+          {filteredRows.map((row) => (
+            <ListItem button key={row.title}>
+              <ListItemText primary={row.title} />
+            </ListItem>
+          ))}
+        </List> */}
+        <RecipeBody rows={filteredRows} page={page} rowsPerPage={rowsPerPage} />
+
+        <Grid item xs={12}>
           <TeamTablePagination
             filteredRows={filteredRows}
             page={page}
@@ -62,7 +74,7 @@ const App = () => {
             setPage={setPage}
             setRowsPerPage={setRowsPerPage}
           />
-        </Grid> */}
+        </Grid>
       </Grid>
     </div>
   );
