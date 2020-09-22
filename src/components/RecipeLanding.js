@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 // Relative Imports
-import { getRows, getColumns } from "../processapi";
 import { useStyles } from "../style/styles";
 import RecipePagination from "./RecipePagination";
 import RecipeBody from "./RecipeBody";
+import RecipesContext from "../context/recipes-context";
 
 // Absolute Imports
 import TextField from "@material-ui/core/TextField";
@@ -16,13 +16,16 @@ const RecipeLanding = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [showDetails, setShowDetails] = useState(0);
+  const { recipes } = useContext(RecipesContext);
 
   const classes = useStyles();
 
   useEffect(() => {
-    setRows(getRows());
-    setFilteredRows(getRows());
-  }, []);
+    if (recipes) {
+      setRows(recipes);
+      setFilteredRows(recipes);
+    }
+  }, [recipes]);
 
   const showRecipeDetails = () => {
     setShowDetails(1);
