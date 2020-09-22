@@ -1,42 +1,32 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import RecipesContext from "../context/recipes-context";
 import Grid from "@material-ui/core/Grid";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
 
 const RecipeDetails = () => {
   const { recipes, dispatch } = useContext(RecipesContext);
+  const [ingredients, setIngredients] = useState([]);
+
+  useEffect(() => {
+    setIngredients(recipes.ingredients);
+  });
 
   return (
     <div>
       <Grid container justify="center" spacing={3}>
-        <h1> Details page</h1>
-        <List >
+        <List>
           <ListItem alignItems="center">
             <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="" />
+              <Avatar alt="Remy Sharp" src={recipes.thumbnail} />
             </ListItemAvatar>
-            <ListItemText
-              primary="Brunch this weekend?"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className={classes.inline}
-                    color="textPrimary"
-                  >
-                    Ali Connors
-                  </Typography>
-                  {" — I'll be in your neighborhood doing errands this…"}
-                </React.Fragment>
-              }
-            />
+            <ListItemText primary={recipes.title} />
           </ListItem>
+          
         </List>
 
         <button

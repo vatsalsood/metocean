@@ -12,7 +12,7 @@ const App = () => {
   const [filteredRows, setFilteredRows] = useState([]);
 
   useEffect(() => {
-    const recipes = getRows();
+    // const recipes = getRows();
     dispatch({ type: "POPULATE_RECIPES", recipes });
   }, []);
 
