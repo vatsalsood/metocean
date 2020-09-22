@@ -7,7 +7,6 @@
 import React from "react";
 
 import TablePagination from "@material-ui/core/TablePagination";
-import Pagination from "@material-ui/lab/Pagination";
 
 const TeamTablePagination = (props) => {
   const handleChangePage = (event, newPage) => {
@@ -20,22 +19,15 @@ const TeamTablePagination = (props) => {
   };
 
   return (
-    <Pagination //   rowsPerPageOptions={[5, 10, 25]}
+    <TablePagination
+      rowsPerPageOptions={[5, 10, 25]}
       component="div"
       count={props.filteredRows.length}
+      rowsPerPage={props.rowsPerPage}
       page={props.page}
-      onChange={handleChangePage}
+      onChangePage={handleChangePage}
+      onChangeRowsPerPage={handleChangeRowsPerPage}
     />
-
-    // <TablePagination
-    //   rowsPerPageOptions={[5, 10, 25]}
-    //   component="div"
-    //   count={props.filteredRows.length}
-    //   rowsPerPage={props.rowsPerPage}
-    //   page={props.page}
-    //   onChangePage={handleChangePage}
-    //   onChangeRowsPerPage={handleChangeRowsPerPage}
-    // />
   );
 };
 export default TeamTablePagination;

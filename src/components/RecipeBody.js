@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -13,7 +13,10 @@ const RecipeBody = (props) => {
         )
         .map((row) => (
           <ListItem button key={row.title}>
-            <ListItemText primary={row.title} />
+            <ListItemText
+              primary={row.title}
+              onClick={props.showRecipeDetails}
+            />
           </ListItem>
         ))}
     </List>
