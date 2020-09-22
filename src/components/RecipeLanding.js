@@ -75,7 +75,7 @@ const RecipeLanding = () => {
           showRecipeDetails={showRecipeDetails}
         />
 
-        <Grid item xs={12}>
+        <Grid container justify="center" spacing={3}>
           <RecipePagination
             filteredRows={filteredRows}
             page={page}

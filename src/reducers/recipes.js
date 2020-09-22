@@ -1,6 +1,9 @@
+let recipes=[] ;
+
 const recipeReducer = (state, action) => {
   switch (action.type) {
     case "POPULATE_RECIPES":
+        recipes = action.recipes;
       return action.recipes;
     case "GET_RECIPE":
       for (let i = 0; i < state.length; i++) {
@@ -9,6 +12,8 @@ const recipeReducer = (state, action) => {
           return state[i];
         }
       }
+      case "RESET_RECIPES":
+          return recipes;
     default:
       return state;
   }
