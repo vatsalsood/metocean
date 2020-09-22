@@ -12,8 +12,8 @@ const App = () => {
   const [filteredRows, setFilteredRows] = useState([]);
 
   useEffect(() => {
-    // const recipes = getRows();
-    dispatch({ type: "POPULATE_RECIPES", recipes });
+     const recipes = getRows();
+    // dispatch({ type: "POPULATE_RECIPES", recipes });
   }, []);
 
   return (
