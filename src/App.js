@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import RecipeDetails from "./components/RecipeDetails";
 import RecipeLanding from "./components/RecipeLanding";
 import { getRows } from "./processapi";
@@ -7,12 +7,9 @@ import RecipesContext from "./context/recipes-context";
 
 const App = () => {
   const [recipes, dispatch] = useReducer(recipeReducer, []);
-  const [showDetails, setShowDetails] = useState(0);
-  const [rows, setRows] = useState([]);
-  const [filteredRows, setFilteredRows] = useState([]);
 
   useEffect(() => {
-     const recipes = getRows();
+    const recipes = getRows();
     dispatch({ type: "POPULATE_RECIPES", recipes });
   }, []);
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -6,14 +6,18 @@ import RecipesContext from "../context/recipes-context";
 
 const RecipeBody = (props) => {
   const { dispatch } = useContext(RecipesContext);
+  const { recipes } = useContext(RecipesContext);
+  const [rows, setRows] = useState([]);
 
-  const showDetails = (title) => {
-    dispatch({ type: "GET_RECIPE", title });
-  };
+  useEffect(() => {
+    if (recipes) {
+      setRows(recipes);
+    }
+  }, [recipes]);
 
   return (
-    <List component="nav">
-      {props.rows
+    <List component="nav" style={{ marginTop: "20px" }}>
+      {rows
         .slice(
           props.page * props.rowsPerPage,
           props.page * props.rowsPerPage + props.rowsPerPage
@@ -22,7 +26,6 @@ const RecipeBody = (props) => {
           <ListItem button key={row.title}>
             <ListItemText
               primary={row.title}
-              // onClick={props.showRecipeDetails}
               onClick={() => {
                 dispatch({ type: "GET_RECIPE", title: row.title });
               }}

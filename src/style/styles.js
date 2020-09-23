@@ -4,12 +4,6 @@
 
 import { makeStyles } from "@material-ui/core/styles";
 
-// const flex = {
-//   display: 'flex',
-//   alignItems: 'baseline',
-//   justifyContent: 'space-evenly'
-// }
-
 export const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
@@ -32,23 +26,7 @@ export const useStyles = makeStyles((theme) => ({
     height: theme.spacing(3),
   },
   large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
+    width: theme.spacing(20),
+    height: theme.spacing(20),
   },
 }));
-
-// export const useStyles1 = ({ spacing: { unit } }) => ({
-//   root: {
-//     margin: `${unit * 3}px auto`,
-//     padding: unit * 2,
-//     maxWidth: 400,
-//   },
-//   header: {
-//     ...flex,
-//     marginTop: unit * 2,
-//   },
-//   form: {
-//     ...flex,
-//     marginBottom: unit,
-//   },
-// });

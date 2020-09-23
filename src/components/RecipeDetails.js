@@ -1,7 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
+
+//Relative Imports
 import RecipesContext from "../context/recipes-context";
 import { useStyles } from "../style/styles";
 
+//Absolute Imports
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -10,6 +13,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
 const RecipeDetails = () => {
   const { recipes, dispatch } = useContext(RecipesContext);
@@ -38,12 +42,12 @@ const RecipeDetails = () => {
                 <Avatar
                   alt="Thumbnail"
                   src={recipes.thumbnail}
-                  className={classes.small}
+                  className={classes.large}
                 />
               </ListItemAvatar>
               <ListItemText
                 primary={
-                  <Typography variant="h4" gutterBottom>
+                  <Typography variant="h5" gutterBottom>
                     {recipes.title}
                   </Typography>
                 }
@@ -51,13 +55,13 @@ const RecipeDetails = () => {
             </ListItem>
           </List>
         </Grid>
-        <Grid container justify="center" spacing={3} xs={12}>
-          <Grid item justify="center" xs={6}>
+        <Grid container justify="center" spacing={3}>
+          <Grid item justify="center" xs={3}>
             <Typography variant="h6" gutterBottom>
-              h6. Heading
+              Ingredients:
             </Typography>
           </Grid>
-          <Grid item justify="center" xs={6}>
+          <Grid item justify="center" xs={1}>
             <List dense>
               {ingredients.map((ingredient) => {
                 return (
@@ -69,13 +73,18 @@ const RecipeDetails = () => {
             </List>
           </Grid>
         </Grid>
-        <button
-          onClick={() => {
-            dispatch({ type: "RESET_RECIPES" });
-          }}
-        >
-          Back
-        </button>
+        <Grid container justify="center" spacing={3}>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ marginBottom: " 20px" }}
+            onClick={() => {
+              dispatch({ type: "RESET_RECIPES" });
+            }}
+          >
+            Back
+          </Button>
+        </Grid>
       </Paper>
     </div>
   );

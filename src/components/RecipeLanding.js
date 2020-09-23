@@ -9,8 +9,7 @@ import RecipesContext from "../context/recipes-context";
 // Absolute Imports
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Divider from "@material-ui/core/Divider";
+
 import Typography from "@material-ui/core/Typography";
 
 const RecipeLanding = () => {
@@ -18,7 +17,6 @@ const RecipeLanding = () => {
   const [filteredRows, setFilteredRows] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [showDetails, setShowDetails] = useState(0);
   const { recipes } = useContext(RecipesContext);
 
   const classes = useStyles();
@@ -30,9 +28,6 @@ const RecipeLanding = () => {
     }
   }, [recipes]);
 
-  const showRecipeDetails = () => {
-    setShowDetails(1);
-  };
 
   /**
    * This function searches the entries with the text typed into the input field
@@ -54,7 +49,6 @@ const RecipeLanding = () => {
            */}
 
           <Grid item justify="center" xs={6}>
-            {/* <label className={classes.paper}>Recipes</label> */}
             <Typography variant="h6" align="center" gutterBottom>
               Recipes
             </Typography>
@@ -71,19 +65,11 @@ const RecipeLanding = () => {
           </Grid>
         </Grid>
 
-        <Grid container justify="center" spacing={3}>
-          {/* <List component="nav">
-          {filteredRows.map((row) => (
-            <ListItem button key={row.title}>
-              <ListItemText primary={row.title} />
-            </ListItem>
-          ))}
-        </List> */}
+        <Grid container justify="center">
           <RecipeBody
             rows={filteredRows}
             page={page}
             rowsPerPage={rowsPerPage}
-            showRecipeDetails={showRecipeDetails}
           />
 
           <Grid container justify="center" spacing={3}>

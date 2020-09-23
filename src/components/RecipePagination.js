@@ -27,6 +27,7 @@ const TeamTablePagination = (props) => {
       page={props.page}
       onChangePage={handleChangePage}
       onChangeRowsPerPage={handleChangeRowsPerPage}
+      style={{ marginTop: "20px" }}
     />
   );
 };
