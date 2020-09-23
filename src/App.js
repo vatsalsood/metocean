@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
      const recipes = getRows();
-    // dispatch({ type: "POPULATE_RECIPES", recipes });
+    dispatch({ type: "POPULATE_RECIPES", recipes });
   }, []);
 
   return (
