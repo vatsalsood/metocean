@@ -1,14 +1,14 @@
 /**
- * TeamTablePagination Component
+ * RecipePagination Component
  * This component breaks the table into pages
  * Props:filteredRows, setRowsPerPage, rowsPerPage, setPage
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import TablePagination from "@material-ui/core/TablePagination";
 
-const TeamTablePagination = (props) => {
+const RecipePagination = (props) => {
   const handleChangePage = (event, newPage) => {
     props.setPage(newPage);
   };
@@ -31,4 +31,4 @@ const TeamTablePagination = (props) => {
     />
   );
 };
-export default TeamTablePagination;
+export default RecipePagination;
